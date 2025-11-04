@@ -1,23 +1,39 @@
 const container = document.querySelector(".container");
+const btn = document.querySelector("button");
 
-for (let i = 0; i < 16; i++) {
-    const column = document.createElement("div");
-    column.classList.add("column");
+function createGrid (size = 16){
+    container.innerHTML = "";
 
-    for (let j = 0; j < 16; j++) {
-        const row = document.createElement("div");
-        row.classList.add("row");
+    for (let i = 0; i < size; i++) {
+        const column = document.createElement("div");
+        column.classList.add("column");
 
-        function changeColor () {
-            row.classList.add("pen");
+        for (let j = 0; j < size; j++) {
+            const row = document.createElement("div");
+            row.classList.add("row");
+
+            function changeColor () {
+                row.classList.add("pen");
+            }
+
+            row.addEventListener("mouseenter", changeColor);
+
+            column.appendChild(row);
         }
-
-        row.addEventListener("mouseenter", changeColor);
-
-        column.appendChild(row);
+        container.appendChild(column);
     }
-    container.appendChild(column);
-
 
 }
 
+createGrid();
+
+btn.addEventListener("click", () => {
+    let size = parseInt(prompt("Enter size of grid: "));
+    
+    if (size > 100 || size < 16 || isNaN(size)) {
+        alert("Size must be a number between 16 and 100");
+        size= 16;   
+    }
+
+    createGrid(size);
+})
