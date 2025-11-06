@@ -16,7 +16,7 @@ function createGrid (size = 16){
                 row.classList.add("pen");
             }
 
-            row.addEventListener("mouseenter", changeColor);
+            row.addEventListener("mouseover", changeColor);
 
             column.appendChild(row);
         }
